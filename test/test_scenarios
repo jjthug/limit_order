@@ -1,0 +1,11 @@
+execute scenario tokenA=ERC20, welle=ERC20
+cancel scenario tokenA=ERC20, welle=ERC20
+
+execute tokenA=native, welle=ERC20
+cancel tokenA=native, welle=ERC20
+
+execute tokenA=ERC20, welle=native
+cancel tokenA=ERC20, welle=native
+
+execute tokenA=native, welle=native
+cancel tokenA=native, welle=native

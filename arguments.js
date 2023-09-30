@@ -1,0 +1,5 @@
+module.exports=["0xcbDf532fa3Ab55A8dD6704986aF42AE2Db35AB96","0x756eC417C5571813DbbC67487F11E4778de9Cd29","0x351FFe29E3aa50aa30934e54ddA435DBC7F4D3Ba","0xB3f5503f93d5Ef84b06993a1975B9D21B962892F"]
+
+// 0xCA0cCD5836AF8ae915534F6EA8c83405219982E8
+
+// npx hardhat verify --network goerli 0x2590c12F5a2a06F5b64Db10885c3A1cC2141937d --contract contracts/Router/GelatoPineCore.sol:GelatoPineCore --constructor-args arguments.js

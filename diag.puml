@@ -1,0 +1,39 @@
+@startuml
+autonumber
+actor       "Witness\n(can be same as owner)" as witness
+actor       Owner as User
+collections "Core" as pcc
+collections "TokenA"
+collections "WELLE"
+actor       "Gelato Bot" as gb
+
+collections "Gelato Automate" as gac
+collections "Handler" as handler
+collections "DEX Router"
+actor       "Gelato Treasury" as gt
+
+User -> WELLE : Approve Welle to "Core"
+User -> TokenA : Approve Token A to "Core"
+witness -> witness : Sign hash (gelato bot address)
+User -> pcc : Deposit Token A and Welle
+pcc -> gac : Create Limit Order Task
+loop until return True
+    gb -> pcc : Check limit order / stop loss condition
+end
+pcc --> gb : return True
+
+gb -> gac : Call executor
+gac -> pcc : Call limit order execute function
+pcc -> handler : Execute the swap
+handler -> "DEX Router" : Call swap tokens A and B
+"DEX Router" -> handler : Return token B
+handler -> "User" : Send Token B to the order owner
+handler -> "DEX Router" : Call swap WELLE with ETH
+return ETH fees
+handler -> gt : Send the ETH fees to gelato
+handler -> User : Send remaining WELLE back to owner
+handler --> gb : Complete
+
+
+
+@enduml
